@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="743de2b7-291d-472a-903d-6b44ab47d926" name="Changes" comment="" />
+    <list default="true" id="743de2b7-291d-472a-903d-6b44ab47d926" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tareaextraclase1/tareaextraclase1/VentanaChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tareaextraclase1/tareaextraclase1/VentanaChat.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1692498006018</updated>
       <workItem from="1692498006854" duration="3238000" />
-      <workItem from="1692558430947" duration="1956000" />
+      <workItem from="1692558430947" duration="3071000" />
     </task>
     <servers />
   </component>

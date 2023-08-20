@@ -4,15 +4,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.util.Stack;
-
 public class VentanaChat {
 
+    /**
+     * Constructor de la clase.
+     * Constructor de la clase que se encarga de llamar a la configuración de los parámetros de la ventana.
+     */
     public VentanaChat(){
 
         parametrosVentana();
@@ -39,6 +39,12 @@ public class VentanaChat {
     //Dirección IP predeterminada
     String IP = "127.0.0.1";
 
+    /**
+     * Método que se encarga de configurar las caracteristicas y comportamientos de la ventana.
+     * Se crea una Scene a la que se le asigna el contenedor StackPane, asi mismo se crea una Stage a la que se le
+     * asigna la Scene anteriormente creada, se asigna el tamaño de la ventana, el cambio de tamaño manual se desactiva,
+     * finalmente se muestra la ventana al usuario.
+     */
     private void parametrosVentana(){
 
         Scene scene = new Scene(contenorPrincipal);
@@ -52,6 +58,17 @@ public class VentanaChat {
 
     }
 
+    /**
+     * Método encargado de manejar los distintos componentes de la interfaz.
+     * Este método se encarga de editar las caracteristicas de los distintos componentes gráficos para darles posición,
+     * tamaño y un comportamiento específico.
+     * La "caja de texto" se encarga de recibir el mensaje que el usuario desea enviar a otro.
+     * El "ip texto" se encarga de enviar el mensaje a una dirección IP en específico, a su lado el "puerto texto"
+     * redirige el mensaje a un puerto específico de la dirección IP asignada.
+     * El "area de texto" se usa para mostrar al usuario los mensajes recibidos desde otro usuario.
+     * El "boton enviar" es usado para enviarle a un usuario es específico por medio de la IP y el puerto el mensaje
+     * escrito en la "caja de texto".
+     */
     public void elementosGraficos(){
 
         //Caja de texto mensajes
@@ -99,6 +116,12 @@ public class VentanaChat {
 
     }
 
+    /**
+     * Método encargado de escribir el mensaje del usuario en el "area de texto" para poder observar lo enviado.
+     * El método utiliza el parámetro que recibe y lo escribe en el "area de texto", si el mensaje viene vacío, no lo
+     * escribe y sale del método.
+     * @param mensaje String que contiene el mensaje guardado en la "caja de texto".
+     */
     private void escribirMensaje(String mensaje){
 
         //Comprobar si el mensaje esta vacío
