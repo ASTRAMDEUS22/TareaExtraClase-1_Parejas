@@ -7,7 +7,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class VentanaChat {
+import java.io.*;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class VentanaChat implements Runnable {
 
     /**
      * Constructor de la clase.
@@ -16,6 +20,8 @@ public class VentanaChat {
     public VentanaChat(){
 
         parametrosVentana();
+        Thread thread = new Thread(this);
+        thread.start();
 
     }
 
@@ -37,7 +43,8 @@ public class VentanaChat {
     private TextArea areaTexto = new TextArea();
 
     //Dirección IP predeterminada
-    String IP = "127.0.0.1";
+    private String IP = "localhost";
+    private int Port = 5000;
 
     /**
      * Método que se encarga de configurar las caracteristicas y comportamientos de la ventana.
@@ -130,8 +137,65 @@ public class VentanaChat {
             areaTexto.appendText(mensaje + "\n");
             cajaTexto.clear();
 
+            //Escribir el mensaje
+            enviarMensajeServer(mensaje);
+
         }
 
     }
 
+    private void enviarMensajeServer(String mensaje){
+
+        try {
+            System.out.println("a");
+            Socket socket = new Socket("localhost",5000);
+            System.out.println("b");
+            PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+            System.out.println("c");
+            out.println(mensaje);
+            System.out.println("d");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void escribirRespuesta(String respuesta){
+
+        areaTexto.appendText(respuesta + "\n");
+
+    }
+
+    @Override
+    public void run() {
+
+        try {
+
+            ServerSocket serverSocket = new ServerSocket(5000);
+            Socket socket;
+
+            while (true) {
+
+                socket = serverSocket.accept();
+                InputStream inputStream = socket.getInputStream();
+                BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+
+                String respuesta = in.readLine();
+                System.out.println(respuesta);
+
+                escribirRespuesta(respuesta);
+
+                //Cerrar sockets
+                socket.close();
+                inputStream.close();
+                in.close();
+            }
+
+            } catch(IOException e){
+                throw new RuntimeException(e);
+            }
+
+
+    }
 }
