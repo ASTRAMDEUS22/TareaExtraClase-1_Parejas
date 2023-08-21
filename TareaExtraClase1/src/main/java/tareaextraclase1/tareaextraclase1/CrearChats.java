@@ -6,7 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Random;
+import java.util.Random.*;
 
 public class CrearChats extends Application {
 
@@ -17,7 +21,11 @@ public class CrearChats extends Application {
     //Botones
     private Button boton_CrearChat = new Button();
 
+    //Lista enlazada para guardar todos los elementos creados
+    private LinkedList listaEnlazada = new LinkedList<>();
 
+    //Instancia del random
+    Random random = new Random();
 
     public static void main(String[] args) {
         launch(args);
@@ -50,10 +58,31 @@ public class CrearChats extends Application {
 
         //Boton para crear las ventanas de chat
         boton_CrearChat.setText("Crear Chat");
-        boton_CrearChat.setOnAction(e -> new VentanaChat().elementosGraficos());
+        boton_CrearChat.setOnAction(e -> {
+
+            VentanaChat ventana = new VentanaChat(generarPuertoAleatorio());
+            ventana.elementosGraficos();
+
+
+        });
 
         //Agregar elementos al contenedor secundario
         contenedorSecundario.getChildren().add(boton_CrearChat);
+
+    }
+
+    private int generarPuertoAleatorio(){
+
+        //Generar puerto aleatorio
+        int numRan = random.nextInt(30000);
+
+        while (listaEnlazada.contains(numRan)){
+            numRan = random.nextInt(30000);
+        }
+
+        listaEnlazada.add(numRan);
+
+        return numRan;
 
     }
 

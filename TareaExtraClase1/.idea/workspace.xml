@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="743de2b7-291d-472a-903d-6b44ab47d926" name="Changes" comment="">
+    <list default="true" id="743de2b7-291d-472a-903d-6b44ab47d926" name="Changes" comment="Se logra la comunicación de forma local entre cliente y servidor.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tareaextraclase1/tareaextraclase1/CrearChats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tareaextraclase1/tareaextraclase1/CrearChats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tareaextraclase1/tareaextraclase1/VentanaChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tareaextraclase1/tareaextraclase1/VentanaChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tareaextraclase1/tareaextraclase1/CrearChats.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tareaextraclase1/tareaextraclase1/CrearChats.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/tareaextraclase1/tareaextraclase1/VentanaChat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/tareaextraclase1/tareaextraclase1/VentanaChat.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,19 +69,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="TareaExtraClase1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="TareaExtraClase1" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CrearChats" />
@@ -96,10 +85,25 @@
       <updated>1692498006018</updated>
       <workItem from="1692498006854" duration="3238000" />
       <workItem from="1692558430947" duration="3071000" />
+      <workItem from="1692584861870" duration="3087000" />
+      <workItem from="1692647547885" duration="318000" />
     </task>
+    <task id="LOCAL-00001" summary="Se logra la comunicación de forma local entre cliente y servidor.">
+      <option name="closed" value="true" />
+      <created>1692569932592</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692569932592</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Se logra la comunicación de forma local entre cliente y servidor." />
+    <option name="LAST_COMMIT_MESSAGE" value="Se logra la comunicación de forma local entre cliente y servidor." />
   </component>
 </project>

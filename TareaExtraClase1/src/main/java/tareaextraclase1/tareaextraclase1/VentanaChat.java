@@ -1,11 +1,15 @@
 package tareaextraclase1.tareaextraclase1;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
+import java.util.Random;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -17,9 +21,10 @@ public class VentanaChat implements Runnable {
      * Constructor de la clase.
      * Constructor de la clase que se encarga de llamar a la configuración de los parámetros de la ventana.
      */
-    public VentanaChat(){
+    public VentanaChat(int puerto){
 
         parametrosVentana();
+        this.puerto = puerto;
         Thread thread = new Thread(this);
         thread.start();
 
@@ -42,9 +47,14 @@ public class VentanaChat implements Runnable {
     //Area de texto
     private TextArea areaTexto = new TextArea();
 
-    //Dirección IP predeterminada
-    private String IP = "localhost";
-    private int Port = 5000;
+    //Label
+    Label labelPuerto = new Label();
+
+    //Numero random
+    private Random random = new Random();
+
+    //Puerto asignado en el server socket
+    private int puerto;
 
     /**
      * Método que se encarga de configurar las caracteristicas y comportamientos de la ventana.
@@ -107,7 +117,10 @@ public class VentanaChat implements Runnable {
         areaTexto.setMaxHeight(450);
         areaTexto.setEditable(false);
 
-
+        //Label del puerto
+        labelPuerto.setText("Puerto local: " + puerto);
+        labelPuerto.setTranslateX(100);
+        labelPuerto.setTranslateY(-250);
 
 
         //Agregar elementos al contenedor secundario
@@ -117,7 +130,8 @@ public class VentanaChat implements Runnable {
                 botonEnviar,
                 areaTexto,
                 ipTexto,
-                puertoTexto
+                puertoTexto,
+                labelPuerto
 
         );
 
@@ -132,28 +146,40 @@ public class VentanaChat implements Runnable {
     private void escribirMensaje(String mensaje){
 
         //Comprobar si el mensaje esta vacío
-        if (!mensaje.isEmpty()){
-
-            areaTexto.appendText(mensaje + "\n");
-            cajaTexto.clear();
-
-            //Escribir el mensaje
-            enviarMensajeServer(mensaje);
-
+        if (mensaje.isEmpty()) {
+            return;
         }
+
+        //Comprobar si el puerto esta vacío
+        if (puertoTexto.getText().isEmpty()) {
+            return;
+        }
+
+        //Comprobar si la Ip esta vacía
+        if (ipTexto.getText().isEmpty()) {
+            ipTexto.setText("127.0.0.1");
+        }
+
+        areaTexto.appendText("Tú: " + mensaje + "\n");
+        cajaTexto.clear();
+
+        //Escribir el mensaje
+        enviarMensajeServer(mensaje,ipTexto.getText(),Integer.parseInt(puertoTexto.getText()));
+
+
 
     }
 
-    private void enviarMensajeServer(String mensaje){
+    private void enviarMensajeServer(String mensaje,String IP, int Puerto){
 
         try {
-            System.out.println("a");
-            Socket socket = new Socket("localhost",5000);
-            System.out.println("b");
+            //System.out.println("a");
+            Socket socket = new Socket(IP,Puerto);
+            //System.out.println("b");
             PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
-            System.out.println("c");
+            //System.out.println("c");
             out.println(mensaje);
-            System.out.println("d");
+            //System.out.println("d");
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -161,9 +187,14 @@ public class VentanaChat implements Runnable {
 
     }
 
-    public void escribirRespuesta(String respuesta){
+    private void escribirRespuesta(String respuesta, String direccionIP){
 
-        areaTexto.appendText(respuesta + "\n");
+        Platform.runLater(() -> {
+
+            areaTexto.appendText(direccionIP + ": " + respuesta + "\n");
+
+        });
+
 
     }
 
@@ -172,19 +203,21 @@ public class VentanaChat implements Runnable {
 
         try {
 
-            ServerSocket serverSocket = new ServerSocket(5000);
+            ServerSocket serverSocket = new ServerSocket(puerto);
             Socket socket;
 
             while (true) {
 
+                //El socket tendrá el valor al recibido por el server
                 socket = serverSocket.accept();
                 InputStream inputStream = socket.getInputStream();
                 BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
 
+                //Se lee la información del Socket
                 String respuesta = in.readLine();
-                System.out.println(respuesta);
 
-                escribirRespuesta(respuesta);
+                //Se llama al método para administrar las respuestas
+                escribirRespuesta(respuesta,socket.getInetAddress().getHostAddress());
 
                 //Cerrar sockets
                 socket.close();
