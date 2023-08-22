@@ -41,6 +41,11 @@ public class CrearChats extends Application {
         elementosGraficos();
 
     }
+    /**
+     * Configura los parámetros de la ventana principal.
+     *
+     * @param stage La ventana principal.
+     */
 
     private void parametrosVentana(Stage stage){
 
@@ -53,6 +58,9 @@ public class CrearChats extends Application {
         stage.setResizable(false);
 
     }
+    /**
+     * Crea y configura los elementos gráficos en la ventana.
+     */
 
     private void elementosGraficos(){
 
@@ -70,6 +78,11 @@ public class CrearChats extends Application {
         contenedorSecundario.getChildren().add(boton_CrearChat);
 
     }
+    /**
+     * Genera un número de puerto aleatorio único.
+     *
+     * @return Un número de puerto aleatorio.
+     */
 
     private int generarPuertoAleatorio(){
 

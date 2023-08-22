@@ -169,7 +169,10 @@ public class VentanaChat implements Runnable {
 
 
     }
-
+    /**
+     * Envía un mensaje al servidor utilizando un socket.
+     * @param mensaje El mensaje a ser enviado al servidor.
+     */
     private void enviarMensajeServer(String mensaje,String IP, int Puerto){
 
         try {
@@ -186,7 +189,10 @@ public class VentanaChat implements Runnable {
         }
 
     }
-
+    /**
+     * Escribe una respuesta en el área de texto especificada.
+     * @param respuesta La respuesta a ser escrita en el área de texto.
+     */
     private void escribirRespuesta(String respuesta, String direccionIP){
 
         Platform.runLater(() -> {
@@ -197,7 +203,9 @@ public class VentanaChat implements Runnable {
 
 
     }
-
+    /**
+     * Método que se ejecuta cuando se inicia el hilo.
+     */
     @Override
     public void run() {
 
