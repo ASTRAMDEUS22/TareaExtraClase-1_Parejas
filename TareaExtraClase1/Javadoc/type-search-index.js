@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"tareaextraclase1.tareaextraclase1","l":"Cliente"},{"p":"tareaextraclase1.tareaextraclase1","l":"CrearChats"},{"p":"tareaextraclase1.tareaextraclase1","l":"Servidor"},{"p":"tareaextraclase1.tareaextraclase1","l":"VentanaChat"}];updateSearchResults();
